@@ -7,7 +7,8 @@ num <- readline(prompt = "Please enter a three digit positive number: ")
 num <- as.numeric(num)
 
 #Question 2
-#Want to check if the number entered is numeric
+#Want to check if the number entered is numeric & 3 digit positive number 
+#Print appropriate messages depending on the condition which the user input meets
 
 if (!is.na(num) && num >= 100 && num <= 999) {
   print(paste("The number you have entered is", num))  
