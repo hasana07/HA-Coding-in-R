@@ -9,10 +9,10 @@ num <- as.numeric(num)
 #Question 2
 #Want to check if the number entered is numeric
 
-if (!is.na(num)) {
+if (!is.na(num) && num >= 100 && num <= 999) {
   print(paste("The number you have entered is", num))  
 } else {
-  print("The value you have entered is not a numeric value.")
+  print("The value you have entered is either not a numeric value, or not a 3-digit positive number.")
 }
 
 #Question 3
@@ -38,5 +38,5 @@ num_sum <- sum(num_cube)
 if (num == num_sum) {
   print(paste(num, "is an Armstrong number !"))
 } else {
-  print(paste(num, "is NOT an Armstrong number."))
+  print(paste(num, "is NOT a 3-digit Armstrong number."))
 }
