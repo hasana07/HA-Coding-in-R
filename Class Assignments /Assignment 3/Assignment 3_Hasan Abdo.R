@@ -15,5 +15,7 @@ word_list <- wordfile$words
 random_word <- sample(word_list,1)
 
 #getting length of random word in order to let the user know 
-word_length <- nchar(random_word)
-
+word_length <- nchar(random_word)           
+                                                       
+#telling the User how many letters their word has 
+cat("Welcome to Hangman\nYour word has", word_length, "letters.")
