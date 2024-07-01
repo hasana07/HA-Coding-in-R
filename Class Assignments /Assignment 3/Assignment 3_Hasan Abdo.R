@@ -16,7 +16,7 @@ read_words <- function() {
   word_list <- wordfile$words
   
   #Function returns vector of strings from the column words, so should return the word list. 
-  return(wordfile$words)
+  return(word_list)
   
 } #read_words function ends here
 
@@ -39,6 +39,19 @@ user_guess <- function() {
   return(guess) 
 }
 
+#Making a function that will provide the user with the length of the chosen secret random word. 
+hangman_word <- function(word_list, max_wrong_guesses = 8) {
 
+# Read words from file, going back to function created "read_words"
+  word_list <- read_words()
+  
+#Choose a random word from the list using sample function
+  random_word <- sample(word_list, 1)
+#Finding the length of the word using nchar
+  word_length <- nchar(random_word)
+#Welcome user and tell them of length of their word
+#Inform the user about the number of wrong guesses allowed
+  cat("Welcome to Hangman\nYour word has", word_length, "letters.\n")
+  cat("You are allowed", max_wrong_guesses, "wrong guesses.\n")
 
       
