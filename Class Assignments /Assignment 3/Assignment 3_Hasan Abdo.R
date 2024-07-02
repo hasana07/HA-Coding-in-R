@@ -118,7 +118,8 @@ while (attempts_left > 0) {
     cat("You already guessed this letter", guess, ". Try again.\n")
   }
   
-# Check if the word has been completely guessed
+#Check if the word has been completely guessed
+#All checks if all elements within the logical vector are true.
   if(all(current_state == random_word_vector)){
 #If User wins on the last try they can still win, so if they have 1 try left and they guess correct, it adds an attempt and still notifies them they won. 
     attempts_left <- attempts_left + 1 
@@ -135,12 +136,13 @@ while (attempts_left > 0) {
 #Check of they didn't win
   if(all(current_state != random_word_vector) && attempts_left == 0){
     cat("Game is over, better luck next time!")
-    break
+    break #breaks loop
   }
   
   #Updating the user with current state of the game as it goes using printed messages
   cat("Word: ", current_state, "\n")
   
+  #Printing out messages to update User with the state of the game as it progresses
   cat("Correct guesses: ", paste(correct_guesses, collapse = " "), "\n")
   cat("Wrong guesses: ", paste(wrong_guesses, collapse = " "), "\n")
   cat("Attempts left: ", attempts_left, "\n")
