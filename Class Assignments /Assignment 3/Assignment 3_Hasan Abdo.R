@@ -139,11 +139,6 @@ while (attempts_left > 0) {
     break #breaks loop
   }
   
-#Check if they didn't win but still have attempts left
-  if(all(current_state != random_word_vector) && attempts_left != 0){
-    cat("Game is over, better luck next time!")
-    break #breaks loop
-  }
   
   #Updating the user with current state of the game as it goes using printed messages
   cat("Word: ", current_state, "\n")
