@@ -73,8 +73,8 @@ user_guess <- function() {
 }
 
 #Creating a vector with same size as the word, and will update this later in the Main Game loop as the User progresses through the game
-#"Vector " function creates a vector with the length of the word given by "word_length" in the argument, and of character type (using mode argument).
-current_state <- vector(mode = "character", length = word_length)
+#Rep function here will replicate underscores for the length of the word. This is to be updated as the game goes along to show the user the word they are guessing. 
+current_state <- rep("_", word_length)
 
 #Main game loop 
 #While loop that will run as long as the attempts_left variable is greater than 0
