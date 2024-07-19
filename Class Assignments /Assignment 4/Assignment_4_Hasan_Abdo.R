@@ -81,6 +81,20 @@ rep_delay$report_delay <- as.numeric(rep_delay$report_delay/86400)
 rep_delay <- rep_delay %>% 
   filter(report_delay > 0)
 
+#Create a table with the average report_delay per country
+rep_delay_table <- rep_delay %>%
+#Creating our "buckets" or countries here 
+  group_by(country) %>% 
+#Creating table using the summarise function, adding an average coulumn using the mean function 
+  summarise(Average = mean(report_delay)) %>% 
+#Destroying the created buckets 
+  ungroup()
+
+
+
+#Creating histogram with duration seconds' column
+#Logged the duration in seconds value in order to better see the spread of the data. Without this, the data was all inside one bucket, and for visualization purposes that wouldn't be helpful. 
+hist(log(rep_delay$duration.seconds), xlab = "Log duration of UFO sighting (sec)", ylab = "Frequency", main = "Logged distribution of UFO sighting duration (sec)")
 
 
 
