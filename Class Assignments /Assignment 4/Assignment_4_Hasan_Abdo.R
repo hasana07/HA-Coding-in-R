@@ -47,9 +47,44 @@ summary(ufo_data$duration.seconds)
 #I think this is too large of a value (to be sighting the UFO for that long).
 #I will exclude all values greater than a week, which is 604800 seconds. (I chose this value at random, I felt it doesn't make sense to keep observing a UFO past a full week).
 #Filter function here to only add rows with seconds under 604800
-new_ufo <- filter(ufo_data, ufo_data$duration.seconds < 604800)
+new_ufo <- ufo_data %>% 
+  filter(duration.seconds < 604800)
 
 
-#Identifying hoaxes
+#Identifying and removing hoaxes
+no_hoax <- new_ufo %>% 
+  filter(!grepl("NUFORC", comments))
+
+#Adding report delay column
+
+#creating a new data frame to add the new column
+rep_delay <- no_hoax
+#need to convert the character value dates to POSIXct
+library(lubridate)
+
+#Changing the character values of "date_timr" and "date_posted" to POSIXct in order to subtract the values. 
+rep_delay$datetime <- ymd_hm(rep_delay$datetime)
+
+rep_delay$date_posted <- dmy(rep_delay$date_posted, tz = "UTC")
+
+#Adding column called "report_delay"
+rep_delay <- rep_delay %>% 
+  mutate(report_delay = date_posted - datetime)
+
+#Changing the column values from seconds to days by dividing by 86400.
+#Using as.numeric to switch the values from POSIXct to numeric.
+rep_delay$report_delay <- as.numeric(rep_delay$report_delay/86400)
+
+
+#removing the rows where the sighting was reported before it happened.
+#filter out for negative values
+rep_delay <- rep_delay %>% 
+  filter(report_delay > 0)
+
+
+
+
+
+
 
 
